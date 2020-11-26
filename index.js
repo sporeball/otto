@@ -1,3 +1,10 @@
+/*
+  index.js
+  otto entry point
+  copyright (c) 2020 sporeball
+  MIT license
+*/
+
 const {app, BrowserWindow, Menu} = require("electron");
 const path = require("path");
 

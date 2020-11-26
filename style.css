@@ -24,14 +24,9 @@ body {
 }
 
 header {
-	position: absolute;
-	width: 500px;
-	height: 250px;
-	top: 50%;
-	left: 50%;
-	margin-top: -125px;
-	margin-left: -250px;
 	text-align: center;
+  margin-top: 3em;
+  margin-bottom: 3em;
 }
 
 header h1 {
@@ -40,4 +35,29 @@ header h1 {
 	margin: 0;
 	padding: 0;
 	opacity: 0.7;
+}
+
+#stop {
+  margin: 0 auto;
+  display: none;
+}
+
+button {
+  padding:10px 20px;
+  color:#363636;
+  background-color:#dedede;
+  font-size:inherit;
+  font-family:inherit;
+  border:none;
+  border-radius:6px;
+  outline:none;
+  cursor:pointer
+}
+
+button:hover {
+  background-color:#c8c8c8
+}
+
+button:focus {
+  box-shadow:0 0 0 1px #0098dcab
 }
