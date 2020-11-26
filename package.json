@@ -1,0 +1,22 @@
+{
+  "name": "otto",
+  "version": "0.0.0",
+  "description": "bring your brain back into the foreground",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sporeball/otto.git"
+  },
+  "build": {
+    "appId": "com.sporeball.otto"
+  },
+  "author": "sporeball",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sporeball/otto/issues"
+  },
+  "homepage": "https://github.com/sporeball/otto#readme"
+}
