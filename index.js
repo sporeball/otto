@@ -19,7 +19,8 @@ const createMainWindow = async () => {
 		title: app.name,
 		show: false,
 		width: 600,
-		height: 400
+		height: 400,
+    enableRemoteModule: true
 	});
 
 	win.on("ready-to-show", () => {

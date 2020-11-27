@@ -1,8 +1,8 @@
-html,
-body {
-	padding: 0;
-	margin: 0;
-	background: transparent;
+* {
+  margin:0;
+  border:0;
+  padding:0;
+  box-sizing:border-box
 }
 
 /* Use OS default fonts */
@@ -26,32 +26,72 @@ body {
   image-rendering: -webkit-optimize-contrast;
 }
 
-header {
+#header {
 	text-align: center;
-  margin-top: 3em;
-  margin-bottom: 3em;
+  height: 110px;
+  line-height: 110px;
 }
 
-header h1 {
+#main {
+  position: relative;
+}
+
+h1 {
 	font-size: 60px;
 	font-weight: 200;
-	margin: 0;
 	padding: 0;
   opacity: 0.75;
 }
 
-#otto {
-  display: block;
-  margin: 0 auto;
-  opacity: 0.75;
+h1.small {
+  font-size: 20px;
+}
+
+h3 {
+  font-size: 28px;
+  font-weight: 200;
+  margin: 0;
+  padding-bottom: 16px;
+}
+
+small {
+  font-size: 12px;
+}
+
+input {
+  color: #000;
+  background-color: #efefef;
+  font-family: inherit;
+  font-size: 14px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  width: 33%;
+  padding: 6px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+}
+
+#d_reflection, #d_stop {
+  text-align: center;
+  display: none;
+  height: 120px;
 }
 
 #stop {
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 2em;
-  display:block;
-  visibility: hidden;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#otto {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translate(-50%, 0);
+  margin: 0 auto;
+  opacity: 0.75;
 }
 
 button {

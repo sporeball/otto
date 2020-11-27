@@ -7,7 +7,10 @@
 
 // elements
 const timer = document.getElementById("timer");
+const d_stop = document.getElementById("d_stop");
 const stop = document.getElementById("stop");
+const d_reflection = document.getElementById("d_reflection");
+const reflect = document.getElementById("reflect");
 const otto = document.getElementById("otto");
 
 // oscillator setup
@@ -36,7 +39,7 @@ interval = () => {
     clearInterval(i);
     oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
     timer.style.opacity = 1;
-    stop.style.visibility = "visible";
+    d_stop.style.display = "block";
     otto.src = "res/otto_yell.png";
     otto.style.opacity = 1;
   }
@@ -49,16 +52,28 @@ setTime = () => {
 }
 
 stop.onclick = () => {
-  time = 300;
+  time = 315;
   setTime();
   oscillator.frequency.setValueAtTime(0, audioCtx.currentTime);
-  timer.style.opacity = 0.75;
-  stop.style.visibility = "hidden";
+
+  timer.classList.add("small");
+  d_stop.style.display = "none";
+  d_reflection.style.display = "block";
   otto.src = "res/otto_indifferent.png";
   otto.style.opacity = 0.75;
+
   i = setInterval(interval, 1000);
+}
+
+submit = (e) => {
+  e.preventDefault();
+
+  timer.classList.remove("small");
+  timer.style.opacity = 0.75;
+  d_reflection.style.display = "none";
 }
 
 // initialization
 setTime();
 var i = setInterval(interval, 1000);
+reflect.addEventListener("submit", submit);

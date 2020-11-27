@@ -7,12 +7,22 @@
 	</head>
 	<body>
 		<div class="container">
-			<header>
+      <header id="header">
 				<h1 id="timer">otto</h1>
 				<p></p>
 			</header>
-			<section class="main">
-        <button id="stop">stop!</button>
+			<section id="main">
+        <div id="d_stop">
+          <button id="stop">stop!</button>
+        </div>
+        <div id="d_reflection">
+          <h3>what did you do?</h3>
+          <form id="reflect">
+            <input type="text">
+            <input type="submit" style="display:none">
+          </form>
+          <small>(press enter)</small>
+        </div>
         <img id="otto" src="res/otto_indifferent.png" width="72px" height="72px" />
       </section>
 			<footer></footer>
