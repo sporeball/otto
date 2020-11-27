@@ -8,6 +8,7 @@
 // elements
 const timer = document.getElementById("timer");
 const stop = document.getElementById("stop");
+const otto = document.getElementById("otto");
 
 // oscillator setup
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -34,7 +35,10 @@ interval = () => {
   if (time == 0) {
     clearInterval(i);
     oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
-    stop.style.display = "block";
+    timer.style.opacity = 1;
+    stop.style.visibility = "visible";
+    otto.src = "res/otto_yell.png";
+    otto.style.opacity = 1;
   }
 }
 
@@ -48,7 +52,10 @@ stop.onclick = () => {
   time = 300;
   setTime();
   oscillator.frequency.setValueAtTime(0, audioCtx.currentTime);
-  stop.style.display = "none";
+  timer.style.opacity = 0.75;
+  stop.style.visibility = "hidden";
+  otto.src = "res/otto_indifferent.png";
+  otto.style.opacity = 0.75;
   i = setInterval(interval, 1000);
 }
 
