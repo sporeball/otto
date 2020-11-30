@@ -17,6 +17,7 @@ const otto = document.getElementById("otto");
 // variables
 var time;
 var minutes, seconds;
+var active; // is the timer going off?
 
 // oscillator setup
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -35,9 +36,10 @@ oscillator.start();
 // utils
 interval = () => {
   time--;
-  setTime();
+  if (!active) setTime();
   if (time == 0) {
-    clearInterval(i);
+    active = true;
+    time = 300;
     oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
     header.style.opacity = 1;
     d_stop.style.display = "block";
@@ -53,7 +55,7 @@ setTime = () => {
 }
 
 stop.onclick = () => {
-  time = 315;
+  active = false;
   setTime();
   oscillator.frequency.setValueAtTime(0, audioCtx.currentTime);
 
@@ -62,8 +64,6 @@ stop.onclick = () => {
   d_reflection.style.display = "block";
   otto.src = "res/otto_indifferent.png";
   otto.style.opacity = 0.75;
-
-  i = setInterval(interval, 1000);
 }
 
 submit = (e) => {
