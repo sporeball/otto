@@ -5,6 +5,11 @@
   MIT license
 */
 
+// dependencies
+const dayjs = require("dayjs");
+const ext_duration = require("dayjs/plugin/duration");
+dayjs.extend(ext_duration);
+
 // elements
 const header = document.getElementById("header");
 const timer = document.getElementById("timer");
@@ -75,16 +80,15 @@ submit = (e) => {
 }
 
 // initialization
-var now = new Date();
-var date = new Date(now.getTime() + (1000 - (now.getTime() % 1000))); // nearest second
+var now = dayjs();
+var date = now.startOf("s").add(1, "s"); // nearest second
 
 var i;
 
 setTimeout(() => {
-  var rounded = new Date(Math.round(date.getTime() / 300000) * 300000); // nearest even 5 minutes from this
-  if (rounded < date) rounded = new Date(rounded.getTime() + 300000);
-  time = Math.floor(Math.abs((date.getTime() - rounded.getTime()) / 1000));
+  var rounded = date.startOf("m").add(5 - date.minute() % 5, "m"); // nearest 5 minutes
+  time = dayjs.duration(rounded.diff(date)).asSeconds();
   setTime();
   i = setInterval(interval, 1000);
   reflect.addEventListener("submit", submit);
-}, date.getTime() - now.getTime());
+}, date.diff(now));

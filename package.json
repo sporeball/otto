@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/sporeball/otto/issues"
   },
-  "homepage": "https://github.com/sporeball/otto#readme"
+  "homepage": "https://github.com/sporeball/otto#readme",
+  "dependencies": {
+    "dayjs": "^1.9.6"
+  }
 }
