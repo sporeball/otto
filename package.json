@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/sporeball/otto#readme",
   "dependencies": {
-    "dayjs": "^1.9.6"
+    "dayjs": "^1.9.6",
+    "electron-store": "^6.0.1"
   }
 }

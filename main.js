@@ -10,12 +10,20 @@ const dayjs = require("dayjs");
 const ext_duration = require("dayjs/plugin/duration");
 dayjs.extend(ext_duration);
 
+const Store = require("electron-store");
+const store = new Store({
+  defaults: {
+    reflections: []
+  }
+});
+
 // elements
 const header = document.getElementById("header");
 const timer = document.getElementById("timer");
 const d_stop = document.getElementById("d_stop");
 const stop = document.getElementById("stop");
 const d_reflection = document.getElementById("d_reflection");
+const f_reflect = document.getElementById("f_reflect");
 const reflect = document.getElementById("reflect");
 const otto = document.getElementById("otto");
 
@@ -23,6 +31,8 @@ const otto = document.getElementById("otto");
 var time;
 var minutes, seconds;
 var active; // is the timer going off?
+var last = dayjs(); // the most recent timer start time
+var reflections = store.get("reflections");
 
 // oscillator setup
 var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -45,6 +55,7 @@ interval = () => {
   if (time == 0) {
     active = true;
     time = 300;
+    last = dayjs();
     oscillator.frequency.setValueAtTime(880, audioCtx.currentTime);
     header.style.opacity = 1;
     d_stop.style.display = "block";
@@ -74,6 +85,12 @@ stop.onclick = () => {
 submit = (e) => {
   e.preventDefault();
 
+  reflections.push({
+    time: last.subtract(5, "m").format("h:mm a"),
+    reflection: reflect.value
+  });
+  store.set("reflections", reflections);
+
   timer.classList.remove("small");
   header.style.opacity = 1;
   d_reflection.style.display = "none";
@@ -81,6 +98,11 @@ submit = (e) => {
 
 // initialization
 var now = dayjs();
+if (store.get("date") != now.format("MM-DD-YYYY")) {
+  store.set("reflections", []);
+}
+store.set("date", now.format("MM-DD-YYYY"));
+
 var date = now.startOf("s").add(1, "s"); // nearest second
 
 var i;
@@ -90,5 +112,5 @@ setTimeout(() => {
   time = dayjs.duration(rounded.diff(date)).asSeconds();
   setTime();
   i = setInterval(interval, 1000);
-  reflect.addEventListener("submit", submit);
+  f_reflect.addEventListener("submit", submit);
 }, date.diff(now));

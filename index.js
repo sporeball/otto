@@ -20,9 +20,9 @@ const createMainWindow = async () => {
 		show: false,
 		width: 600,
 		height: 400,
-    enableRemoteModule: true,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      enableRemoteModule: true
     }
 	});
 
