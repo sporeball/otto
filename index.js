@@ -6,7 +6,6 @@
 */
 
 const {app, BrowserWindow, Menu} = require("electron");
-const path = require("path");
 
 // note: must match `build.appId` in package.json
 app.setAppUserModelId("com.sporeball.otto");
@@ -35,7 +34,7 @@ const createMainWindow = async () => {
 		mainWindow = undefined;
 	});
 
-	await win.loadFile(path.join(__dirname, "index.html"));
+	await win.loadFile("index.html");
 
 	return win;
 };
